@@ -6,7 +6,7 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import { User } from '../../core/database/entities/user.entity';
+import { User } from './user.entity';
 
 @Table
 export class Todo extends Model<Todo> {
