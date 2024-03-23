@@ -14,7 +14,7 @@ import { TodosModule } from './modules/todos/todos.module';
     UsersModule,
     AuthModule,
     TodosModule,
-  ], //will make env variables available to the entire application
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

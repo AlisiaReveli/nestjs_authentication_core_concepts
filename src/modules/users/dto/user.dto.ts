@@ -1,22 +1,33 @@
-import { IsNotEmpty, MinLength, IsEmail, IsEnum } from 'class-validator';
-
-enum Gender {
-  MALE = 'male',
-  FEMALE = 'female',
-}
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsNotEmpty,
+  MinLength,
+  IsEmail,
+  IsEnum,
+  Matches,
+} from 'class-validator';
+import { Gender } from '../../../../constants';
 
 export class UserDto {
+  @ApiProperty({ description: 'The name of the user' })
   @IsNotEmpty()
   readonly name: string;
 
+  @ApiProperty({ description: 'The email address of the user' })
   @IsNotEmpty()
-  @IsEmail()
+  @IsEmail({}, { message: 'Invalid email format' })
   readonly email: string;
 
+  @ApiProperty({ description: 'The password of the user' })
   @IsNotEmpty()
   @MinLength(6)
+  @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/, {
+    message:
+      'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+  })
   readonly password: string;
 
+  @ApiProperty({ enum: Gender })
   @IsNotEmpty()
   @IsEnum(Gender, {
     message: 'gender must be either male or female',

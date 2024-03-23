@@ -7,6 +7,7 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { User } from './user.entity';
+import { ListType } from '../../../../constants';
 
 @Table
 export class Todo extends Model<Todo> {
@@ -29,6 +30,14 @@ export class Todo extends Model<Todo> {
   })
   completed: boolean;
 
+  @Column({
+    field: 'is_public',
+    type: DataType.BOOLEAN,
+    allowNull: true,
+    defaultValue: false,
+  })
+  public: boolean;
+
   @ForeignKey(() => User)
   @Column({
     type: DataType.INTEGER,
@@ -38,4 +47,10 @@ export class Todo extends Model<Todo> {
 
   @BelongsTo(() => User)
   user: User;
+
+  @Column({
+    type: DataType.ENUM(...Object.values(ListType)),
+    allowNull: false,
+  })
+  listType: string;
 }
