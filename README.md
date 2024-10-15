@@ -2,7 +2,7 @@
 ## Running the app
 
 ```bash
-$ git clone https://github.com/AlisiaReveli/crispy_be_challenge_alisia_reveli.git
+$ git clone https://github.com/AlisiaReveli/nestjs_authentication_core_concepts.git
 $ docker-compose build
 $ docker-compose up
 
